@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>Korpus</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div id="pair-wrapper">
+        <div v-if="showIntro" class="fade">
+            <h1 id="intro">Click next to pair a device.</h1>
+            <a id="next" v-on:click="next">Next</a>
+        </div>
+        <div v-if="showQr" class="fade">
+            <h1 id="qr" v-if="showCode">Code: {{ code }}</h1>
+            <div v-html="rawHtml"></div>
+            <a id="generate" v-on:click="makeQrCode">Generate!</a>
+            <p class="pqr">Click 'Generate' to pair a new device. {{ instruction }}</p>
+        </div>
+        <div v-if="showDevicePaired" class="fade">
+            <svg id="checkmark-svg" class="run-animation" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 193.3 193.3"><circle class="cls-1 circle" cx="96.65" cy="96.65" r="94.15"/><polyline class="cls-1 checkmark" points="46.9 101.4 76.9 131.4 146.4 61.9"/></svg>
+            <p class="sdp">Device has been paired!</p>
+            <a id="pairedok" v-on:click="pairedOk">Ok</a>
+        </div>
+        <div v-show="showDevices" class="fade">
+            <i id="addDevice" class="fa fa-plus" v-on:click="addNewDevice"></i>
+            <div id="devices-wrapper">
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
